@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Posilovna KČT - Domů{% endblock %}
+
+{% block navigation %}
+<ul class="navbar-nav ms-auto">
+    <li class="nav-item">
+        <a class="nav-link" href="{% url 'login' %}">
+            <i class="fas fa-sign-in-alt me-1"></i>Přihlásit
+        </a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<div class="hero-section bg-dark text-white py-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-6">
+                <h1 class="display-6 fw-bold mb-4 text-center">Oddíl Silového Trojboje a Vzpírání Přeštice.</h1>
+                <div class="d-flex gap-3 justify-content-start">
+                </div>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="{% static 'image/Main_photo.png' %}" alt="Posilovna KČT" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold mb-4">Vítejte,</h2>
+                <p class="lead">na stránkách Oddílu Silového Trojboje a Vzpírání Přeštice. </br>
+                    Tento web slouží pro členy oddílů registrovaných pod TJ Přeštice. </br>
+                    Po přihlášení naleznete všechny informace o Vašem členství. </br> </br>
+                    Pokud nemáte zřízený účet, kontaktujte nás na emailu <a href="mailto:info@powerfitgym.com">info@powerfitgym.com</a>.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Posilovna KCT{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section text-white py-5">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold mb-4 text-center">Posilovna KČT, oddíl nadějných borců</h1>
+                <div class="d-flex gap-3 justify-content-start">
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="{% static 'image/Main_photo.png' %}" alt="Posilovna KČT" class="img-fluid rounded shadow">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Content Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h2 class="display-5 fw-bold mb-4">Vítej uživateli {{user.username}}, </h2>
+                <p class="lead"> 1) prvně se koukni se do záložky <strong>"Úklidové skupiny"</strong>, jestli náhodou nemáš úklid.</p>
+                
+                <p class="lead"> 2) Jestli chceš přispět na nové vybavení v posilovně, rozklikni záložku <strong>"Veřejná sbírka"</strong>, je zde QR kód na transparentní účet, který slouží jen na výběr peněz pro nákup vybavení posilovny.</p>
+                
+                <p class="lead">3) Záložka <strong>"Rekordy"</strong> zase slouží k zápisů rekordů v naší posilovně. Jestli se máš čím pochlubit, ať je to jakýkoliv cvik. Pošli video na email <a href="mailto:info@powerfitgym.com">info@powerfitgym.com</a> po schválení se tvůj rekord objeví v tabulce a uvidí ho i ostaní.</p>
+                
+                <p class="lead">4) Pokud si jen chceš vést svůj osobní deník rekordů, mrkni pod záložku <strong>"Účet - Moje rekordy"</strong>. Můžeš si sem zapisovat svoje osobní rekordy, které uvidíš jen ty sám.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
