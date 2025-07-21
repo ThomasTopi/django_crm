@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Veřejná sbírka{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h3 class="mb-0">Veřejná sbírka – Transparentní účet</h3>
+                </div>
+                <div class="card-body text-center">
+                    <p class="lead">Všechny finanční dary budou použity <strong class="text-danger">pouze</strong> na nákup nového vybavení posilovny.</p>
+                    <h5 class="mb-3">Číslo účtu: <strong>123456789/0100</strong></h5>
+                    <p>Pokud není účet na Vaše jméno, přidejte jej do variabilního symbolu.</p>
+                    <p>Pro rychlou platbu použijte QR kód níže:</p>
+                    <img src="{% static 'image/qr_code.png' %}" alt="QR kód pro platbu" class="img-fluid mb-3" style="max-width: 250px;">
+                    <p class="text-muted">Díky za podporu!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Second section: List of users and donations -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Přispěvatelé</h5>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Pořadí</th>
+                                <th>Jméno</th>
+                                <th>Částka</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.amount }} Kč</td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="3" class="text-center">Zatím žádné příspěvky.</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="p-2 small text-muted">
+                </br>
+                    *Všechny platby jsou kontrolovány manuálně. Pokud se vyskytne nějaký problém nebo platba zde nebude připsána do 24h, pište na email.
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Third section: Voting for new equipment -->
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">Hlasování o novém vybavení</h5>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Název vybavení</th>
+                                <th>Odkaz</th>
+                                <th>Počet hlasů</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in equipment_votes %}
+                            <tr>
+                                <td>{{ item.name }}</td>
+                                <td><a href="{{ item.link }}" target="_blank">Odkaz</a></td>
+                                <td id="votes-{{ forloop.counter0 }}">{{ item.votes|default:0 }}</td>
+                                <td><button class="btn btn-primary vote-btn" data-row="{{ forloop.counter0 }}">Hlasovat</button></td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="text-center">Zatím žádné návrhy na vybavení.</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if user.is_superuser %}
+                    <div class="d-flex justify-content-center p-3">
+                        <button id="reset-votes" class="btn btn-danger">Reset hlasování</button>
+                    </div>
+                    <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const voteButtons = document.querySelectorAll('.vote-btn');
+                        voteButtons.forEach(function(btn) {
+                            btn.addEventListener('click', function() {
+                                // Hide all vote buttons
+                                voteButtons.forEach(b => b.style.display = 'none');
+                                // Increment vote count for this row
+                                const row = btn.getAttribute('data-row');
+                                const voteCell = document.getElementById('votes-' + row);
+                                voteCell.textContent = parseInt(voteCell.textContent) + 1;
+                            });
+                        });
+                        const resetBtn = document.getElementById('reset-votes');
+                        if (resetBtn) {
+                            resetBtn.addEventListener('click', function() {
+                                // Reset all vote counts to 0
+                                document.querySelectorAll('[id^="votes-"]').forEach(cell => cell.textContent = '0');
+                                // Show all vote buttons again
+                                document.querySelectorAll('.vote-btn').forEach(btn => btn.style.display = '');
+                            });
+                        }
+                    });
+                    </script>
+                    {% endif %}
+                </div>
+                <div class="p-2 small text-muted">
+                </br>
+                    *Pokud byste do tabulky rádi přidali další návrh na vybavení, pošlete odkaz na email.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

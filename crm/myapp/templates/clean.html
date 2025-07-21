@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}Úklidové skupiny{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Úklidové skupiny</h2>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Skupina: 1<br/>
+                    Týdny: {% for t in skupina_1 %}{{ t }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                </div>
+                <div class="card-body p-0">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr><th>Jméno</th></tr>
+                        </thead>
+                        <tbody>
+                        {% for i in "1234567" %}
+                            <tr><td>Člen {{ forloop.counter }}</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Skupina: 2<br/>
+                    Týdny: {% for t in skupina_2 %}{{ t }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                </div>
+                <div class="card-body p-0">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr><th>Jméno</th></tr>
+                        </thead>
+                        <tbody>
+                        {% for i in "1234567" %}
+                            <tr><td>Člen {{ forloop.counter }}</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Skupina: 3<br/>
+                    Týdny: {% for t in skupina_3 %}{{ t }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                </div>
+                <div class="card-body p-0">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr><th>Jméno</th></tr>
+                        </thead>
+                        <tbody>
+                        {% for i in "1234567" %}
+                            <tr><td>Člen {{ forloop.counter }}</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-header bg-dark text-white">
+                    Skupina: 4<br/>
+                    Týdny: {% for t in skupina_4 %}{{ t }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                </div>
+                <div class="card-body p-0">
+                    <table class="table mb-0">
+                        <thead>
+                            <tr><th>Jméno</th></tr>
+                        </thead>
+                        <tbody>
+                        {% for i in "1234567" %}
+                            <tr><td>Člen {{ forloop.counter }}</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
